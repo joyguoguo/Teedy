@@ -11,6 +11,16 @@ angular.module('docs').controller('Login', function(Restangular, $scope, $rootSc
     $rootScope.app = data;
   });
 
+  // Visiting as guest (short-lived session, no remember-me)
+  $scope.visitAsGuest = function() {
+    $scope.user = {
+      username: 'guest',
+      password: '',
+      remember: false
+    };
+    $scope.login();
+  };
+
   // Login as guest
   $scope.loginAsGuest = function() {
     $scope.user = {
