@@ -1,0 +1,17 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+Docs Web Commons,com.sismics.util.filter,TokenBasedSecurityFilter,134,0,24,0,30,0,17,0,5,0
+Docs Web Commons,com.sismics.util.filter,JwtBasedSecurityFilter,284,0,14,0,76,0,17,0,10,0
+Docs Web Commons,com.sismics.util.filter,SecurityFilter,146,0,12,0,39,0,15,0,9,0
+Docs Web Commons,com.sismics.util.filter,RequestContextFilter,206,0,22,0,70,0,17,0,6,0
+Docs Web Commons,com.sismics.util.filter,HeaderBasedSecurityFilter,38,0,8,0,10,0,7,0,3,0
+Docs Web Commons,com.sismics.util.filter,CorsFilter,54,0,6,0,15,0,7,0,4,0
+Docs Web Commons,com.sismics.util.listener,IIOProviderContextListener.LocalFilter,16,0,2,0,4,0,3,0,2,0
+Docs Web Commons,com.sismics.util.listener,IIOProviderContextListener,81,0,6,0,20,0,7,0,4,0
+Docs Web Commons,com.sismics.security,AnonymousPrincipal,22,0,0,0,11,0,9,0,9,0
+Docs Web Commons,com.sismics.security,UserPrincipal,58,0,0,0,24,0,15,0,15,0
+Docs Web Commons,com.sismics.rest.util,ValidationUtil,290,36,32,2,46,8,30,3,14,2
+Docs Web Commons,com.sismics.rest.util,RestUtil,66,0,2,0,13,0,3,0,2,0
+Docs Web Commons,com.sismics.rest.util,AclUtil,60,0,2,0,14,0,3,0,2,0
+Docs Web Commons,com.sismics.rest.exception,ClientException,11,19,0,0,3,5,1,2,1,2
+Docs Web Commons,com.sismics.rest.exception,ServerException,30,0,0,0,8,0,3,0,3,0
+Docs Web Commons,com.sismics.rest.exception,ForbiddenClientException,15,0,0,0,4,0,1,0,1,0
