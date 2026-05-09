@@ -1,93 +1,53 @@
-def runMaven(String goals) {
-    def mvnCommand = "mvn -B -Dmaven.repo.local=.m2/repository ${goals}"
-    if (isUnix()) {
-        sh mvnCommand
-    } else {
-        bat mvnCommand
-    }
-}
-
 pipeline {
     agent any
-
-    options {
-        timestamps()
-    }
-
     stages {
         stage('Clean') {
             steps {
-                script {
-                    runMaven('clean')
-                }
+                sh 'mvn clean'
             }
         }
-
         stage('Compile') {
             steps {
-                script {
-                    runMaven('compile')
-                }
+                sh 'mvn compile'
             }
         }
-
         stage('Test') {
             steps {
-                script {
-                    runMaven('test -Dmaven.test.failure.ignore=true')
-                }
+                sh 'mvn test -Dmaven.test.failure.ignore=true'
             }
         }
-
         stage('PMD') {
             steps {
-                script {
-                    runMaven('pmd:pmd')
-                }
+                sh 'mvn pmd:pmd'
             }
         }
-
         stage('JaCoCo') {
             steps {
-                script {
-                    runMaven('jacoco:report')
-                }
+                sh 'mvn jacoco:report'
             }
         }
-
+        stage('Javadoc') {
+            steps {
+                sh 'mvn javadoc:javadoc'
+            }
+        }
         stage('Site') {
             steps {
-                script {
-                    runMaven('site')
-                }
+                sh 'mvn site'
             }
         }
-
         stage('Package') {
             steps {
-                script {
-                    runMaven('package -DskipTests')
-                }
+                sh 'mvn package -DskipTests'
             }
         }
     }
-
     post {
         always {
-            junit testResults: '**/target/surefire-reports/*.xml', allowEmptyResults: true
-
-            archiveArtifacts artifacts: '**/target/**/*.jar', fingerprint: true, allowEmptyArchive: true
-            archiveArtifacts artifacts: '**/target/**/*.war', fingerprint: true, allowEmptyArchive: true
-            archiveArtifacts artifacts: '**/target/site/**/*.*', fingerprint: true, allowEmptyArchive: true
-
-            publishHTML(target: [
-                allowMissing: true,
-                alwaysLinkToLastBuild: true,
-                keepAll: true,
-                reportDir: 'target/site',
-                reportFiles: 'index.html',
-                reportName: 'Maven Site'
-            ])
+            archiveArtifacts artifacts: '**/target/site/**/*.*', fingerprint: true
+            archiveArtifacts artifacts: '**/target/**/*.jar', fingerprint: true
+            archiveArtifacts artifacts: '**/target/**/*.war', fingerprint: true
+            junit '**/target/surefire-reports/*.xml'
         }
     }
 }
