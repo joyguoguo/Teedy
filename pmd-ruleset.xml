@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="Practice 7 PMD Metrics"
+         xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
+  <description>
+    Custom PMD ruleset for Practice 7. It keeps only the metric-oriented
+    design rules that correspond to LoC, CC, WMC, CBO, and LCOM.
+  </description>
+
+  <!-- LoC: flags classes with too many source lines. -->
+  <rule ref="category/java/design.xml/ExcessiveClassLength"/>
+
+  <!-- CC: flags methods with high cyclomatic complexity. -->
+  <rule ref="category/java/design.xml/CyclomaticComplexity"/>
+
+  <!-- WMC: PMD has no exact WMC rule; TooManyMethods is the closest method-count metric. -->
+  <rule ref="category/java/design.xml/TooManyMethods"/>
+
+  <!-- CBO: flags classes coupled to too many other classes. -->
+  <rule ref="category/java/design.xml/CouplingBetweenObjects"/>
+
+  <!-- LCOM: PMD has no exact LCOM rule; GodClass includes cohesion-related TCC/WMC checks. -->
+  <rule ref="category/java/design.xml/GodClass"/>
+</ruleset>
