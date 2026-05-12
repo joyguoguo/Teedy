@@ -43,12 +43,12 @@ import java.util.*;
  * This class implements the functionality described in RFC 6238 (TOTP: Time
  * based one-time password algorithm) and has been tested again Google's
  * implementation of such algorithm in its Google Authenticator application.
- * <p/>
+ * <p>
  * This class lets users create a new 16-bit base32-encoded secret key with the
  * validation code calculated at {@code time = 0} (the UNIX epoch) and the URL
  * of a Google-provided QR barcode to let an user load the generated information
  * into Google Authenticator.
- * <p/>
+ * <p>
  * The random number generator used by this class uses the default algorithm and
  * provider. Users can override them by setting the following system properties
  * to the algorithm and provider name of their choice:
@@ -56,10 +56,10 @@ import java.util.*;
  * <li>{@link #RNG_ALGORITHM}.</li>
  * <li>{@link #RNG_ALGORITHM_PROVIDER}.</li>
  * </ul>
- * <p/>
+ * <p>
  * This class does not store in any way either the generated keys nor the keys
  * passed during the authorization process.
- * <p/>
+ * <p>
  * Java Server side class for Google Authenticator's TOTP generator was inspired
  * by an author's blog post.
  *

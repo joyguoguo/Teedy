@@ -1,18 +1,21 @@
+# Using Ubuntu 22.04 as base image
 FROM ubuntu:22.04
-LABEL maintainer="b.gamard@sismics.com"
+
+# Set maintainer
+LABEL maintainer="teedy@example.com"
 
 # Run Debian in non interactive mode
-ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 
-# Configure env
-ENV LANG C.UTF-8
-ENV LC_ALL C.UTF-8
-ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk-amd64/
-ENV JAVA_OPTIONS -Dfile.encoding=UTF-8 -Xmx1g
-ENV JETTY_VERSION 11.0.20
-ENV JETTY_HOME /opt/jetty
+# Configure environment variables
+ENV LANG=C.UTF-8
+ENV LC_ALL=C.UTF-8
+ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/
+ENV JAVA_OPTIONS="-Dfile.encoding=UTF-8 -Xmx1g"
+ENV JETTY_VERSION=11.0.20
+ENV JETTY_HOME=/opt/jetty
 
-# Install packages
+# Install necessary packages and OCR languages
 RUN apt-get update && \
     apt-get -y -q --no-install-recommends install \
     vim less procps unzip wget tzdata openjdk-11-jdk \
@@ -48,9 +51,10 @@ RUN apt-get update && \
     tesseract-ocr-sqi \
     && apt-get clean && \
     rm -rf /var/lib/apt/lists/*
+
 RUN dpkg-reconfigure -f noninteractive tzdata
 
-# Install Jetty
+# Install Jetty server
 RUN wget -nv -O /tmp/jetty.tar.gz \
     "https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-home/${JETTY_VERSION}/jetty-home-${JETTY_VERSION}.tar.gz" \
     && tar xzf /tmp/jetty.tar.gz -C /opt \
@@ -60,16 +64,20 @@ RUN wget -nv -O /tmp/jetty.tar.gz \
     && mkdir /opt/jetty/webapps \
     && chmod +x /opt/jetty/bin/jetty.sh
 
+# Expose port 8080
 EXPOSE 8080
 
-# Install app
+# Install the application
 RUN mkdir /app && \
     cd /app && \
     java -jar /opt/jetty/start.jar --add-modules=server,http,webapp,deploy
 
+# Add configuration and WAR file
 ADD docs.xml /app/webapps/docs.xml
 ADD docs-web/target/docs-web-*.war /app/webapps/docs.war
 
+# Set working directory
 WORKDIR /app
 
+# Start Jetty
 CMD ["java", "-jar", "/opt/jetty/start.jar"]

@@ -54,6 +54,11 @@ public class Comment implements Loggable {
     @Column(name = "COM_DELETEDATE_D")
     private Date deleteDate;
     
+    /**
+     * Getter of id.
+     *
+     * @return the id
+     */
     public String getId() {
         return id;
     }
@@ -61,7 +66,12 @@ public class Comment implements Loggable {
     public void setId(String id) {
         this.id = id;
     }
-    
+
+    /**
+     * Getter of documentId.
+     *
+     * @return the documentId
+     */
     public String getDocumentId() {
         return documentId;
     }
@@ -69,7 +79,12 @@ public class Comment implements Loggable {
     public void setDocumentId(String documentId) {
         this.documentId = documentId;
     }
-    
+
+    /**
+     * Getter of createDate.
+     *
+     * @return the createDate
+     */
     public Date getCreateDate() {
         return createDate;
     }
@@ -86,15 +101,30 @@ public class Comment implements Loggable {
     public void setDeleteDate(Date deleteDate) {
         this.deleteDate = deleteDate;
     }
-    
+
+    /**
+     * Getter of content.
+     *
+     * @return the content
+     */
     public String getContent() {
         return content;
     }
 
+    /**
+     * Setter of content.
+     *
+     * @param content the content to set
+     */
     public void setContent(String content) {
         this.content = content;
     }
 
+    /**
+     * Getter of userId.
+     *
+     * @return the userId
+     */
     public String getUserId() {
         return userId;
     }

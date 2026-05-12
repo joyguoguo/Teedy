@@ -53,6 +53,11 @@ public class ClasspathScanner<T> {
      * Classpath scanning priority.
      */
     public @interface Priority {
+        /**
+         * Priority value for ordering classes.
+         *
+         * @return the priority value
+         */
         int value() default Integer.MAX_VALUE;
     }
 }

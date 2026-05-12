@@ -112,8 +112,9 @@ public class AuthenticationTokenDao {
     
     /**
      * Deletes all authentication tokens of an user.
-     * 
-     * @param userId
+     *
+     * @param userId User ID
+     * @param id Token ID to exclude from deletion
      */
     public void deleteByUserId(String userId, String id) {
         EntityManager em = ThreadLocalContext.get().getEntityManager();
