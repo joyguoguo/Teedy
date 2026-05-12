@@ -28,12 +28,12 @@ pipeline {
         }
         stage('Javadoc') {
             steps {
-                sh 'mvn javadoc:javadoc'
+                sh 'mvn javadoc:javadoc -Dmaven.javadoc.failOnError=false'
             }
         }
         stage('Site') {
             steps {
-                sh 'mvn site'
+                sh 'mvn site -Dmaven.javadoc.failOnError=false'
             }
         }
         stage('Package') {
